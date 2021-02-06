@@ -1,7 +1,7 @@
 plugins {
-  id 'com.android.library'
-  id 'kotlin-android'
-  id 'kotlin-kapt'
+  id "com.android.library"
+  id "kotlin-android"
+  id "kotlin-kapt"
 }
 
 dependencies {
@@ -21,6 +21,8 @@ dependencies {
   implementation "com.squareup.okhttp3:logging-interceptor"
 
   implementation "com.squareup.moshi:moshi-kotlin:$versions.moshi"
+
+  implementation "javax.inject:javax.inject:$versions.javax_inject"
 
   testImplementation "androidx.room:room-testing:$versions.room"
   testImplementation "junit:junit:$versions.junit"

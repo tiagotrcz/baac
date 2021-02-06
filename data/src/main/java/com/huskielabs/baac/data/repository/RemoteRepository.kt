@@ -1,6 +1,6 @@
-package com.huskielabs.baac.data.datasource
+package com.huskielabs.baac.data.repository
 
-interface RemoteDataSource {
+interface RemoteRepository {
 
   suspend fun getEmojis(): List<String>
 
