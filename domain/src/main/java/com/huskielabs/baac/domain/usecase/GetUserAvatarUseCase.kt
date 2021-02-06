@@ -15,4 +15,5 @@ class GetUserAvatarUseCase @Inject constructor(
   }
 
   data class Params(val userName: String)
+
 }
