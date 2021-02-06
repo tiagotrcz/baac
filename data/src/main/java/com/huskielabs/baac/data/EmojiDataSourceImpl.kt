@@ -4,7 +4,6 @@ import com.huskielabs.baac.data.cache.dbo.EmojiDBO
 import com.huskielabs.baac.data.repository.EmojiCacheRepository
 import com.huskielabs.baac.data.repository.RemoteRepository
 import com.huskielabs.baac.domain.datasource.EmojiDataSource
-import com.huskielabs.baac.domain.model.EmojiModel
 import javax.inject.Inject
 import kotlin.random.Random
 
@@ -13,7 +12,7 @@ class EmojiDataSourceImpl @Inject constructor(
   private val emojiCacheRepository: EmojiCacheRepository,
 ) : EmojiDataSource {
 
-  override suspend fun getRandomEmoji(): EmojiModel {
+  override suspend fun getRandomEmoji(): String {
     val emojiCount = emojiCacheRepository.getSize()
 
     if (emojiCount == 0) fetchAndSaveEmojisToDatabase()
@@ -21,15 +20,15 @@ class EmojiDataSourceImpl @Inject constructor(
     val randomId = Random.nextInt(1, emojiCount)
     val emoji = emojiCacheRepository.getById(randomId)
 
-    return EmojiModel(emojiUrl = emoji.url)
+    return emoji.url
   }
 
-  override suspend fun getAll(): List<EmojiModel> {
+  override suspend fun getAll(): List<String> {
     val emojiCount = emojiCacheRepository.getSize()
 
     if (emojiCount == 0) fetchAndSaveEmojisToDatabase()
 
-    return emojiCacheRepository.getAll().map { emoji -> EmojiModel(emojiUrl = emoji.url) }
+    return emojiCacheRepository.getAll().map { it.url }
   }
 
   private suspend fun fetchAndSaveEmojisToDatabase() {
