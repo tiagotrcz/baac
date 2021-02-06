@@ -13,15 +13,6 @@ class UserDataSourceImpl @Inject constructor(
   private val userCacheRepository: UserCacheRepository,
 ) : UserDataSource {
 
-  override suspend fun insert(user: UserModel) {
-    userCacheRepository.insert(
-      UserAvatarDBO(
-        userName = user.userName,
-        avatarUrl = user.avatarUrl,
-      )
-    )
-  }
-
   override suspend fun getUserAvatarByUserName(userName: String): String {
     return userCacheRepository.getByUserName(userName) ?: remoteRepository.getUserAvatarUrl()
       .also { avatar ->
