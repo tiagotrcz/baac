@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 data class UserAvatarDBO(
   @PrimaryKey
   @ColumnInfo(name = "user_name")
-  val userName: Int,
+  val userName: String,
   @ColumnInfo(name = "avatar_url")
   val avatarUrl: String,
 )

@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 data class EmojiDBO(
   @PrimaryKey(autoGenerate = true)
   @ColumnInfo(name = "uid")
-  val id: Int,
+  var id: Int = 0,
   @ColumnInfo(name = "url")
   val url: String,
 )

@@ -14,4 +14,10 @@ abstract class EmojiDAO : BaseDAO<EmojiDBO>() {
   @Query("SELECT * FROM emoji")
   abstract suspend fun getAll(): List<EmojiDBO>
 
+  @Query("SELECT count(*) FROM emoji")
+  abstract suspend fun getSize(): Int
+
+  @Query("SELECT * FROM emoji WHERE uid = :id")
+  abstract fun getById(id: Int): EmojiDBO
+
 }

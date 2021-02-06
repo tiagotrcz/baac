@@ -3,12 +3,12 @@ package com.huskielabs.baac.data.repository
 import com.huskielabs.baac.data.cache.dbo.UserAvatarDBO
 import kotlinx.coroutines.flow.Flow
 
-interface CacheUserRepository {
+interface UserCacheRepository {
 
   suspend fun insert(userAvatar: UserAvatarDBO)
 
-  suspend fun getByUserName(userName: String): UserAvatarDBO?
+  suspend fun getByUserName(userName: String): String?
 
-  fun getAll(): Flow<UserAvatarDBO>
+  fun getAll(): Flow<String>
 
 }
