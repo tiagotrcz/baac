@@ -8,9 +8,9 @@ import javax.inject.Inject
 
 class GetAllUsersAvatarUseCase @Inject constructor(
   private val userDataSource: UserDataSource,
-) : FlowUseCase<NoParams, String> {
+) : FlowUseCase<NoParams, List<String>> {
 
-  override fun invoke(params: NoParams): Flow<String> {
+  override fun invoke(params: NoParams): Flow<List<String>> {
     return userDataSource.getAll()
   }
 

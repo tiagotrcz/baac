@@ -2,6 +2,7 @@ package com.huskielabs.baac.data.remote.service
 
 import com.huskielabs.baac.data.remote.dto.UserAvatarDTO
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 interface GithubService {
 
@@ -9,6 +10,6 @@ interface GithubService {
   suspend fun getEmojis(): Map<String, String>
 
   @GET("users/{username}")
-  suspend fun getUserAvatar(): UserAvatarDTO
+  suspend fun getUserAvatar(@Path("userName") userName: String): UserAvatarDTO
 
 }

@@ -9,10 +9,6 @@ task jacocoTestReport(type: JacocoReport, dependsOn: [
     "domain:test",
     "data:testDebugUnitTest",
 ]) {
-  final commonFileExclusions = [
-      '**/*Module*.*',
-  ]
-
   final appFileExclusions = [
       'android/**/*.*',
       '**/BuildConfig.*',
@@ -23,9 +19,6 @@ task jacocoTestReport(type: JacocoReport, dependsOn: [
       '**/*Activity*.*',
       '**/*Fragment*.*',
       '**/*Application*.*',
-      '**/SchedulerProvider*.*',
-      '**/helpers/*.*',
-      '**/presentation/**/dto/*.*',
   ]
 
   final domainFileExclusions = [
@@ -38,24 +31,25 @@ task jacocoTestReport(type: JacocoReport, dependsOn: [
       '**/*Database**.*',
       '**/*DBO.*',
       '**/*DTO.*',
+      '**/*DAO.*',
   ]
 
   final classDirectoriesTrees = [
-      fileTree(dir: "${project.rootDir}/app/build/tmp/kotlin-classes/debug", excludes: appFileExclusions + commonFileExclusions),
-      fileTree(dir: "${project.rootDir}/domain/build/classes/kotlin/main", excludes: commonFileExclusions + domainFileExclusions),
-      fileTree(dir: "${project.rootDir}/data/build/tmp/kotlin-classes/debug", excludes: dataFileExclusions + commonFileExclusions)
+      fileTree(dir: "${project.rootDir}/app/build/tmp/kotlin-classes/debug", excludes: appFileExclusions),
+      fileTree(dir: "${project.rootDir}/domain/build/classes/kotlin/main", excludes: domainFileExclusions),
+      fileTree(dir: "${project.rootDir}/data/build/tmp/kotlin-classes/debug", excludes: dataFileExclusions),
   ]
 
   final coverageSourceDirs = [
       "${project.rootDir}/app/src/main/java",
       "${project.rootDir}/domain/src/main/java",
-      "${project.rootDir}/data/src/main/java"
+      "${project.rootDir}/data/src/main/java",
   ]
 
   final executionDataDirs = [
       "${project.rootDir}/app/build/jacoco/testDebugUnitTest.exec",
       "${project.rootDir}/domain/build/jacoco/test.exec",
-      "${project.rootDir}/data/build/jacoco/testDebugUnitTest.exec"
+      "${project.rootDir}/data/build/jacoco/testDebugUnitTest.exec",
   ]
 
   reports {

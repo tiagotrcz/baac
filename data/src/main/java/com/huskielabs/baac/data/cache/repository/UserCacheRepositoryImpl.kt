@@ -18,7 +18,7 @@ class UserCacheRepositoryImpl @Inject constructor(
     return userDao.getByUserName(userName)
   }
 
-  override fun getAll(): Flow<String> {
+  override fun getAll(): Flow<List<String>> {
     return userDao.getAll()
   }
 

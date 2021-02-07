@@ -9,6 +9,6 @@ interface UserCacheRepository {
 
   suspend fun getByUserName(userName: String): String?
 
-  fun getAll(): Flow<String>
+  fun getAll(): Flow<List<String>>
 
 }

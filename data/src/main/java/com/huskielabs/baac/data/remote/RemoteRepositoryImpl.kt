@@ -12,8 +12,8 @@ class RemoteRepositoryImpl @Inject constructor(
     return githubService.getEmojis().values.toList()
   }
 
-  override suspend fun getUserAvatarUrl(): String {
-    return githubService.getUserAvatar().avatarUrl
+  override suspend fun getUserAvatarUrl(userName: String): String {
+    return githubService.getUserAvatar(userName).avatarUrl
   }
 
 }

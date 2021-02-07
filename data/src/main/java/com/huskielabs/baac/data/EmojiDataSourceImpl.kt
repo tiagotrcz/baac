@@ -13,11 +13,11 @@ class EmojiDataSourceImpl @Inject constructor(
 ) : EmojiDataSource {
 
   override suspend fun getRandomEmoji(): String {
-    val emojiCount = emojiCacheRepository.getSize()
+    var emojiCount = emojiCacheRepository.getSize()
 
-    if (emojiCount == 0) fetchAndSaveEmojisToDatabase()
+    if (emojiCount == 0) emojiCount = fetchAndSaveEmojisToDatabase()
 
-    val randomId = Random.nextInt(1, emojiCount)
+    val randomId = Random.nextInt(0, emojiCount) + 1
     val emoji = emojiCacheRepository.getById(randomId)
 
     return emoji.url
@@ -31,9 +31,10 @@ class EmojiDataSourceImpl @Inject constructor(
     return emojiCacheRepository.getAll().map { it.url }
   }
 
-  private suspend fun fetchAndSaveEmojisToDatabase() {
+  private suspend fun fetchAndSaveEmojisToDatabase(): Int {
     val emojis = remoteRepository.getEmojis()
     emojiCacheRepository.insertAll(emojis.map { emojiUrl -> EmojiDBO(url = emojiUrl) })
+    return emojis.size
   }
 
 }

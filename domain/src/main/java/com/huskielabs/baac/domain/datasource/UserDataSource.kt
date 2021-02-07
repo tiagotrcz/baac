@@ -6,6 +6,6 @@ interface UserDataSource {
 
   suspend fun getUserAvatarByUserName(userName: String): String?
 
-  fun getAll(): Flow<String>
+  fun getAll(): Flow<List<String>>
 
 }

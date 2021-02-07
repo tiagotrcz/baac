@@ -27,8 +27,8 @@ class GetAllUsersAvatarUseCaseTest {
 
   @Test
   fun `should get all users avatar`() {
-    val dataSourceResponse = flowOf("avatarUrl")
-    val expected = "avatarUrl"
+    val dataSourceResponse = flowOf(listOf("avatarUrl"))
+    val expected = listOf("avatarUrl")
 
     coEvery { userDataSource.getAll() } returns dataSourceResponse
 
