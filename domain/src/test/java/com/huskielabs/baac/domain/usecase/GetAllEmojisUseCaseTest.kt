@@ -1,7 +1,7 @@
-package com.huskielabs.baac.usecase
+package com.huskielabs.baac.domain.usecase
 
 import com.huskielabs.baac.domain.datasource.EmojiDataSource
-import com.huskielabs.baac.domain.usecase.GetRandomEmojiUseCase
+import com.huskielabs.baac.domain.usecase.GetAllEmojisUseCase
 import com.huskielabs.baac.domain.usecase.shared.NoParams
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -12,28 +12,28 @@ import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 
-class GetRandomEmojiUseCaseTest {
+class GetAllEmojisUseCaseTest {
 
   private val emojiDataSource = mockk<EmojiDataSource>()
 
-  private lateinit var useCase: GetRandomEmojiUseCase
+  private lateinit var useCase: GetAllEmojisUseCase
 
   @Before
   fun `set up`() {
-    useCase = GetRandomEmojiUseCase(emojiDataSource)
+    useCase = GetAllEmojisUseCase(emojiDataSource)
   }
 
   @Test
-  fun `should get ramdon emoji`() {
-    val dataSourceResponse = "emojiUrl"
-    val expected = "emojiUrl"
+  fun `should get all emojis`() {
+    val dataSourceResponse = listOf("emojiUrl")
+    val expected = listOf("emojiUrl")
 
-    coEvery { emojiDataSource.getRandomEmoji() } returns dataSourceResponse
+    coEvery { emojiDataSource.getAll() } returns dataSourceResponse
 
     val actual = runBlocking { useCase(NoParams) }
     Assert.assertEquals(expected, actual)
 
-    coVerify(exactly = 1) { emojiDataSource.getRandomEmoji() }
+    coVerify(exactly = 1) { emojiDataSource.getAll() }
 
     confirmVerified(emojiDataSource)
   }

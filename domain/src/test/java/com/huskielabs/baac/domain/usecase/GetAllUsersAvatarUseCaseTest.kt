@@ -1,4 +1,4 @@
-package com.huskielabs.baac.usecase
+package com.huskielabs.baac.domain.usecase
 
 import com.huskielabs.baac.domain.datasource.UserDataSource
 import com.huskielabs.baac.domain.usecase.GetAllUsersAvatarUseCase
