@@ -4,7 +4,7 @@ import com.huskielabs.baac.data.remote.dto.UserAvatarDTO
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface GithubService {
+interface GitHubService {
 
   @GET("emojis")
   suspend fun getEmojis(): Map<String, String>

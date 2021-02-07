@@ -9,9 +9,10 @@ import com.huskielabs.baac.util.Reducer
 import com.huskielabs.baac.util.ReducerImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel(
+class MainViewModel @Inject constructor(
   private val getRandomEmojiUseCase: GetRandomEmojiUseCase,
   private val dispatchersProvider: DispatchersProvider,
 ) : MainContract.ViewModel, ViewModel(), Reducer<MainState> by ReducerImpl(MainState.INITIAL) {

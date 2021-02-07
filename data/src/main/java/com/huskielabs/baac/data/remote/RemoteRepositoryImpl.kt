@@ -1,19 +1,19 @@
 package com.huskielabs.baac.data.remote
 
 import com.huskielabs.baac.data.repository.RemoteRepository
-import com.huskielabs.baac.data.remote.service.GithubService
+import com.huskielabs.baac.data.remote.service.GitHubService
 import javax.inject.Inject
 
 class RemoteRepositoryImpl @Inject constructor(
-  private val githubService: GithubService
+  private val gitHubService: GitHubService
 ) : RemoteRepository {
 
   override suspend fun getEmojis(): List<String> {
-    return githubService.getEmojis().values.toList()
+    return gitHubService.getEmojis().values.toList()
   }
 
   override suspend fun getUserAvatarUrl(userName: String): String {
-    return githubService.getUserAvatar(userName).avatarUrl
+    return gitHubService.getUserAvatar(userName).avatarUrl
   }
 
 }

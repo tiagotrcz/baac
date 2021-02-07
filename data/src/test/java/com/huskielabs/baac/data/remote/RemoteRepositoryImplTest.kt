@@ -1,7 +1,7 @@
 package com.huskielabs.baac.data.remote
 
 import com.huskielabs.baac.data.remote.dto.UserAvatarDTO
-import com.huskielabs.baac.data.remote.service.GithubService
+import com.huskielabs.baac.data.remote.service.GitHubService
 import com.huskielabs.baac.data.repository.RemoteRepository
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -14,7 +14,7 @@ import org.junit.Test
 
 class RemoteRepositoryImplTest {
 
-  private val githubService = mockk<GithubService>()
+  private val githubService = mockk<GitHubService>()
 
   private lateinit var repository: RemoteRepository
 
