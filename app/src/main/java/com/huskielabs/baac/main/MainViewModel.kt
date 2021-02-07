@@ -4,10 +4,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.huskielabs.baac.domain.usecase.GetRandomEmojiUseCase
 import com.huskielabs.baac.domain.usecase.shared.NoParams
-import com.huskielabs.baac.util.DispatchersProvider
-import com.huskielabs.baac.util.Reducer
-import com.huskielabs.baac.util.ReducerImpl
+import com.huskielabs.baac.shared.DispatchersProvider
+import com.huskielabs.baac.shared.Navigator
+import com.huskielabs.baac.shared.Reducer
+import com.huskielabs.baac.shared.ReducerImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -15,7 +17,10 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
   private val getRandomEmojiUseCase: GetRandomEmojiUseCase,
   private val dispatchersProvider: DispatchersProvider,
+  private val navigator: Navigator,
 ) : MainContract.ViewModel, ViewModel(), Reducer<MainState> by ReducerImpl(MainState.INITIAL) {
+
+  override val state: StateFlow<MainState> = mutableState
 
   override fun getRandomEmoji() {
     viewModelScope.launch(dispatchersProvider.io) {
@@ -29,6 +34,10 @@ class MainViewModel @Inject constructor(
         updateState { copy(isRandomEmojiLoading = false) }
       }
     }
+  }
+
+  override fun openEmojiListScreen() {
+
   }
 
 }

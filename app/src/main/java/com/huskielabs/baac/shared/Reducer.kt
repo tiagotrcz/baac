@@ -1,4 +1,4 @@
-package com.huskielabs.baac.util
+package com.huskielabs.baac.shared
 
 import kotlinx.coroutines.flow.MutableStateFlow
 

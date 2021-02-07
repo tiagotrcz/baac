@@ -1,13 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
+  android:gravity="center"
+  android:orientation="vertical"
   tools:context=".main.MainFragment">
 
-  <TextView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:text="Hello" />
+  <FrameLayout
+    android:layout_width="@dimen/image_emoji_size"
+    android:layout_height="@dimen/image_emoji_size">
 
-</FrameLayout>
+    <androidx.appcompat.widget.AppCompatImageView
+      android:id="@+id/image_emoji"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent" />
+
+    <ProgressBar
+      android:id="@+id/progress_bar_random_emoji"
+      android:layout_width="@dimen/random_emoji_loading_size"
+      android:layout_height="@dimen/random_emoji_loading_size"
+      android:layout_gravity="center" />
+  </FrameLayout>
+
+  <com.google.android.material.button.MaterialButton
+    android:id="@+id/button_random_emoji"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/spacing_normal"
+    android:text="@string/action_random_emoji" />
+
+</LinearLayout>

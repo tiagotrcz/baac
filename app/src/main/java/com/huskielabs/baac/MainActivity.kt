@@ -3,7 +3,7 @@ package com.huskielabs.baac
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
-import com.huskielabs.baac.util.Navigator
+import com.huskielabs.baac.shared.Navigator
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
