@@ -2,6 +2,7 @@ package com.huskielabs.baac.avatarlist
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.huskielabs.baac.R
@@ -36,7 +37,14 @@ class AvatarListFragment : Fragment(R.layout.avatar_list_fragment) {
   }
 
   private fun bindOutput() = with(viewModel) {
-    watch(state, adapter::submitList)
+    watch(state) { state ->
+      adapter.submitList(state.avatars)
+
+      with(binding) {
+        recyclerAvatars.isVisible = !state.showEmptyView
+        textEmpty.isVisible = state.showEmptyView
+      }
+    }
   }
 
 }

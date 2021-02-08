@@ -3,4 +3,6 @@
   <string name="action_random_emoji">Random Emoji</string>
   <string name="action_emoji_list">Emoji List</string>
   <string name="action_avatar_list">Avatar List</string>
+  <string name="label_empty_emojis">Empty emoji list</string>
+  <string name="label_empty_avatars">Empty avatar list</string>
 </resources>

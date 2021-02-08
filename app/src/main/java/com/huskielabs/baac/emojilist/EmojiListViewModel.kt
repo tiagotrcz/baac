@@ -30,9 +30,21 @@ class EmojiListViewModel @Inject constructor(
       try {
         emojiList = getAllEmojisUseCase(NoParams).toMutableList()
 
-        updateState { copy(loading = false, emojiUrlList = emojiList) }
+        updateState {
+          copy(
+            loading = false,
+            emojiUrlList = emojiList,
+            showEmptyView = emojiList.isEmpty()
+          )
+        }
       } catch (e: Exception) {
-        updateState { copy(loading = false, emojiUrlList = emptyList()) }
+        updateState {
+          copy(
+            loading = false,
+            emojiUrlList = emptyList(),
+            showEmptyView = true
+          )
+        }
       }
     }
   }

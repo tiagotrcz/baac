@@ -41,6 +41,7 @@ class EmojiListFragment : Fragment(R.layout.emoji_list_fragment) {
       with(binding) {
         progressEmojiList.isVisible = state.loading
         recyclerEmoji.isVisible = !state.loading
+        textEmpty.isVisible = state.showEmptyView
 
         loadAdapter(state.emojiUrlList)
 

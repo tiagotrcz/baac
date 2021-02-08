@@ -6,7 +6,7 @@ interface AvatarListContract {
 
   interface ViewModel {
 
-    val state: StateFlow<List<UserAvatarViewData>>
+    val state: StateFlow<AvatarListViewState>
 
     fun getAllUsersAvatar()
     fun deleteAvatar(userAvatar: UserAvatarViewData)
