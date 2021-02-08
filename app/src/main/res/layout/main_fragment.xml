@@ -8,11 +8,11 @@
   tools:context=".main.MainFragment">
 
   <FrameLayout
-    android:layout_width="@dimen/image_emoji_size"
-    android:layout_height="@dimen/image_emoji_size">
+    android:layout_width="@dimen/image_emoji_avatar_size"
+    android:layout_height="@dimen/image_emoji_avatar_size">
 
     <androidx.appcompat.widget.AppCompatImageView
-      android:id="@+id/image_emoji"
+      android:id="@+id/image_emoji_avatar"
       android:layout_width="match_parent"
       android:layout_height="match_parent" />
 
@@ -27,7 +27,7 @@
     android:id="@+id/button_random_emoji"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/spacing_normal"
+    android:layout_marginTop="@dimen/spacing_large"
     android:text="@string/action_random_emoji" />
 
   <com.google.android.material.button.MaterialButton
@@ -36,5 +36,30 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/spacing_normal"
     android:text="@string/action_emoji_list" />
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/spacing_large"
+    android:layout_marginTop="@dimen/spacing_large"
+    android:layout_marginEnd="@dimen/spacing_large"
+    android:orientation="horizontal">
+
+    <com.google.android.material.textfield.TextInputEditText
+      android:id="@+id/edit_avatar_search"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:inputType="text"
+      android:textAlignment="center" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+      android:id="@+id/button_search_avatar"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:src="@drawable/ic_baseline_search_24" />
+
+  </LinearLayout>
+
 
 </LinearLayout>

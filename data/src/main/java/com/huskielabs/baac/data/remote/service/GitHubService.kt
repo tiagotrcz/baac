@@ -10,6 +10,6 @@ interface GitHubService {
   suspend fun getEmojis(): Map<String, String>
 
   @GET("users/{username}")
-  suspend fun getUserAvatar(@Path("userName") userName: String): UserAvatarDTO
+  suspend fun getUserAvatar(@Path("username") userName: String): UserAvatarDTO
 
 }

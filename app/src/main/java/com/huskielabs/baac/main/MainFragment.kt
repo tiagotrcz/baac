@@ -28,21 +28,24 @@ class MainFragment : Fragment(R.layout.main_fragment) {
   private fun bindInputs() = with(binding) {
     buttonRandomEmoji.setOnClickListener { viewModel.getRandomEmoji() }
     buttonOpenEmojiList.setOnClickListener { viewModel.openEmojiListScreen() }
+    buttonSearchAvatar.setOnClickListener {
+      viewModel.searchAvatar(editAvatarSearch.text.toString())
+    }
   }
 
   private fun bindOutputs() = with(viewModel) {
     watch(state) { state ->
       with(binding) {
-        imageEmoji.isVisible = !state.isRandomEmojiLoading
+        imageEmojiAvatar.isVisible = !state.isRandomEmojiLoading
         progressBarRandomEmoji.isVisible = state.isRandomEmojiLoading
 
-        state.randomEmojiUrl?.let(::loadEmojiImage)
+        state.imageUrl?.let(::loadImage)
       }
     }
   }
 
-  private fun loadEmojiImage(imageUrl: String) {
-    binding.imageEmoji.load(imageUrl)
+  private fun loadImage(imageUrl: String) {
+    binding.imageEmojiAvatar.load(imageUrl)
   }
 
 }

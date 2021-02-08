@@ -10,5 +10,6 @@ interface MainContract {
 
     fun getRandomEmoji()
     fun openEmojiListScreen()
+    fun searchAvatar(userName: String)
   }
 }

@@ -1,7 +1,7 @@
 package com.huskielabs.baac.data.remote
 
-import com.huskielabs.baac.data.repository.RemoteRepository
 import com.huskielabs.baac.data.remote.service.GitHubService
+import com.huskielabs.baac.data.repository.RemoteRepository
 import javax.inject.Inject
 
 class RemoteRepositoryImpl @Inject constructor(

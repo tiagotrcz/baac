@@ -16,6 +16,8 @@ import com.huskielabs.baac.data.repository.RemoteRepository
 import com.huskielabs.baac.data.repository.UserCacheRepository
 import com.huskielabs.baac.domain.datasource.EmojiDataSource
 import com.huskielabs.baac.domain.datasource.UserDataSource
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -40,7 +42,13 @@ object DataModule {
 
   @Provides
   @Singleton
-  fun provideRetrofit(): Retrofit {
+  fun providesMoshi(): Moshi = Moshi.Builder()
+    .add(KotlinJsonAdapterFactory())
+    .build()
+
+  @Provides
+  @Singleton
+  fun provideRetrofit(moshi: Moshi): Retrofit {
     val logger = HttpLoggingInterceptor.Logger { message ->
       Platform.get().log(message, Platform.INFO, null)
     }
@@ -58,7 +66,7 @@ object DataModule {
     return Retrofit.Builder()
       .baseUrl("https://api.github.com/")
       .client(okHttpClient)
-      .addConverterFactory(MoshiConverterFactory.create())
+      .addConverterFactory(MoshiConverterFactory.create(moshi))
       .build()
   }
 
