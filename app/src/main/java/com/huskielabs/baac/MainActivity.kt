@@ -2,6 +2,7 @@ package com.huskielabs.baac
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
 import com.huskielabs.baac.shared.Navigator
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,7 +22,7 @@ class MainActivity : AppCompatActivity() {
       .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
     val navController = navHostFragment.navController
 
-    navigator.bind(navController)
+    navigator.bind(navController, lifecycleScope)
   }
 
   override fun onDestroy() {

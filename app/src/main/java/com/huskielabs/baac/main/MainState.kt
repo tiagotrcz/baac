@@ -8,7 +8,7 @@ data class MainState(
   companion object {
     val INITIAL = MainState(
       isRandomEmojiLoading = false,
-      randomEmojiUrl = null
+      randomEmojiUrl = null,
     )
   }
 }

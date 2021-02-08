@@ -16,7 +16,9 @@ object AppModule {
 
   @Provides
   @Singleton
-  fun provideNavigator(): Navigator = NavigatorImpl()
+  fun provideNavigator(dispatchersProvider: DispatchersProvider): Navigator {
+    return NavigatorImpl(dispatchersProvider)
+  }
 
   @Provides
   @Singleton

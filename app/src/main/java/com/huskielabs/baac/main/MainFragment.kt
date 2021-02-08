@@ -27,6 +27,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
   private fun bindInputs() = with(binding) {
     buttonRandomEmoji.setOnClickListener { viewModel.getRandomEmoji() }
+    buttonOpenEmojiList.setOnClickListener { viewModel.openEmojiListScreen() }
   }
 
   private fun bindOutputs() = with(viewModel) {

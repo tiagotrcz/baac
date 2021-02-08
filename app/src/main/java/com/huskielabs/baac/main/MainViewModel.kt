@@ -2,6 +2,7 @@ package com.huskielabs.baac.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.huskielabs.baac.R
 import com.huskielabs.baac.domain.usecase.GetRandomEmojiUseCase
 import com.huskielabs.baac.domain.usecase.shared.NoParams
 import com.huskielabs.baac.shared.DispatchersProvider
@@ -37,7 +38,7 @@ class MainViewModel @Inject constructor(
   }
 
   override fun openEmojiListScreen() {
-
+    navigator.navigate(R.id.main_to_emojiList)
   }
 
 }

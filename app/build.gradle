@@ -23,6 +23,7 @@ dependencies {
   implementation "androidx.core:core-ktx:$versions.androidx_core"
   implementation "androidx.appcompat:appcompat:$versions.appcompat"
   implementation "com.google.android.material:material:$versions.material"
+  implementation "androidx.swiperefreshlayout:swiperefreshlayout:$versions.swiperefreshlayout"
   implementation "androidx.constraintlayout:constraintlayout:$versions.constraintlayout"
 
   implementation "androidx.navigation:navigation-fragment-ktx:$versions.navigation"

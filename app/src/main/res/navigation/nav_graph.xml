@@ -9,6 +9,15 @@
     android:id="@+id/mainFragment"
     android:name="com.huskielabs.baac.main.MainFragment"
     android:label="main_fragment"
-    tools:layout="@layout/main_fragment" />
+    tools:layout="@layout/main_fragment">
+    <action
+      android:id="@+id/main_to_emojiList"
+      app:destination="@id/emojiListFragment" />
+  </fragment>
+  <fragment
+    android:id="@+id/emojiListFragment"
+    android:name="com.huskielabs.baac.emojilist.EmojiListFragment"
+    android:label="emoji_list_fragment"
+    tools:layout="@layout/emoji_list_fragment" />
 
 </navigation>

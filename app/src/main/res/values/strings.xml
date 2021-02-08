@@ -1,4 +1,5 @@
 <resources>
   <string name="app_name">baac</string>
   <string name="action_random_emoji">Random Emoji</string>
+  <string name="action_emoji_list">Emoji List</string>
 </resources>
