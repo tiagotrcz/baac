@@ -7,6 +7,7 @@ import com.huskielabs.baac.domain.usecase.GetAllEmojisUseCase
 import com.huskielabs.baac.domain.usecase.GetAllUsersAvatarUseCase
 import com.huskielabs.baac.domain.usecase.GetRandomEmojiUseCase
 import com.huskielabs.baac.domain.usecase.GetUserAvatarUseCase
+import com.huskielabs.baac.domain.usecase.GetUserRepoUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -45,6 +46,12 @@ object DomainModule {
   @Singleton
   fun provideDeleteUserAvatarUseCase(userDataSource: UserDataSource): DeleteUserAvatarUseCase {
     return DeleteUserAvatarUseCase(userDataSource)
+  }
+
+  @Provides
+  @Singleton
+  fun provideGetUserRepoUseCase(userDataSource: UserDataSource): GetUserRepoUseCase {
+    return GetUserRepoUseCase(userDataSource)
   }
 
 }

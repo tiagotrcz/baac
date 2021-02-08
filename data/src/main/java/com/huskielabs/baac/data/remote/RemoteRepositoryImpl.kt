@@ -1,5 +1,6 @@
 package com.huskielabs.baac.data.remote
 
+import com.huskielabs.baac.data.remote.dto.UserRepoDTO
 import com.huskielabs.baac.data.remote.service.GitHubService
 import com.huskielabs.baac.data.repository.RemoteRepository
 import javax.inject.Inject
@@ -14,6 +15,10 @@ class RemoteRepositoryImpl @Inject constructor(
 
   override suspend fun getUserAvatarUrl(userName: String): String {
     return gitHubService.getUserAvatar(userName).avatarUrl
+  }
+
+  override suspend fun getUserRepo(userName: String, page: Int, perPage: Int): List<UserRepoDTO> {
+    return gitHubService.getUserRepo(userName, page, perPage)
   }
 
 }
