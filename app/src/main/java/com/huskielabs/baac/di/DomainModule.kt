@@ -2,6 +2,7 @@ package com.huskielabs.baac.di
 
 import com.huskielabs.baac.domain.datasource.EmojiDataSource
 import com.huskielabs.baac.domain.datasource.UserDataSource
+import com.huskielabs.baac.domain.usecase.DeleteUserAvatarUseCase
 import com.huskielabs.baac.domain.usecase.GetAllEmojisUseCase
 import com.huskielabs.baac.domain.usecase.GetAllUsersAvatarUseCase
 import com.huskielabs.baac.domain.usecase.GetRandomEmojiUseCase
@@ -38,6 +39,12 @@ object DomainModule {
   @Singleton
   fun provideGetUserAvatarUseCase(userDataSource: UserDataSource): GetUserAvatarUseCase {
     return GetUserAvatarUseCase(userDataSource)
+  }
+
+  @Provides
+  @Singleton
+  fun provideDeleteUserAvatarUseCase(userDataSource: UserDataSource): DeleteUserAvatarUseCase {
+    return DeleteUserAvatarUseCase(userDataSource)
   }
 
 }

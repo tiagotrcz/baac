@@ -18,8 +18,12 @@ class UserCacheRepositoryImpl @Inject constructor(
     return userDao.getByUserName(userName)
   }
 
-  override fun getAll(): Flow<List<String>> {
+  override fun getAll(): Flow<List<UserAvatarDBO>> {
     return userDao.getAll()
+  }
+
+  override suspend fun deleteUserAvatar(userAvatar: UserAvatarDBO) {
+    userDao.delete(userAvatar)
   }
 
 }

@@ -12,7 +12,7 @@ abstract class UserDAO: BaseDAO<UserAvatarDBO>() {
   @Query("SELECT avatar_url FROM user_avatar WHERE user_name = :userName")
   abstract suspend fun getByUserName(userName: String): String?
 
-  @Query("SELECT avatar_url FROM user_avatar")
-  abstract fun getAll(): Flow<List<String>>
+  @Query("SELECT * FROM user_avatar")
+  abstract fun getAll(): Flow<List<UserAvatarDBO>>
 
 }

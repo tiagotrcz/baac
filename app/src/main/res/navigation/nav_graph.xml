@@ -13,11 +13,19 @@
     <action
       android:id="@+id/main_to_emojiList"
       app:destination="@id/emojiListFragment" />
+    <action
+      android:id="@+id/main_to_avatarList"
+      app:destination="@id/avatarListFragment" />
   </fragment>
   <fragment
     android:id="@+id/emojiListFragment"
     android:name="com.huskielabs.baac.emojilist.EmojiListFragment"
     android:label="emoji_list_fragment"
-    tools:layout="@layout/emoji_list_fragment" />
+    tools:layout="@layout/emoji_list_fragment"/>
+  <fragment
+    android:id="@+id/avatarListFragment"
+    android:name="com.huskielabs.baac.avatarlist.AvatarListFragment"
+    android:label="avatar_list_fragment"
+    tools:layout="@layout/avatar_list_fragment" />
 
 </navigation>

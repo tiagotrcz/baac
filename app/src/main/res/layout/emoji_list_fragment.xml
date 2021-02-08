@@ -17,7 +17,7 @@
       android:layout_height="match_parent"
       app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
       app:spanCount="4"
-      tools:listitem="@layout/emoji_item" />
+      tools:listitem="@layout/image_item" />
 
   </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

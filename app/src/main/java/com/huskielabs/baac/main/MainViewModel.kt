@@ -43,6 +43,10 @@ class MainViewModel @Inject constructor(
     navigator.navigate(R.id.main_to_emojiList)
   }
 
+  override fun openAvatarListScreen() {
+    navigator.navigate(R.id.main_to_avatarList)
+  }
+
   override fun searchAvatar(userName: String) {
     viewModelScope.launch(dispatchersProvider.io) {
       updateState { copy(isRandomEmojiLoading = true) }

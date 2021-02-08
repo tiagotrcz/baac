@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.huskielabs.baac.databinding.EmojiItemBinding
+import com.huskielabs.baac.databinding.ImageItemBinding
 
 class EmojiListAdapter : RecyclerView.Adapter<EmojiListAdapter.ViewHolder>() {
 
@@ -12,7 +12,7 @@ class EmojiListAdapter : RecyclerView.Adapter<EmojiListAdapter.ViewHolder>() {
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
     return ViewHolder(
-      EmojiItemBinding.inflate(
+      ImageItemBinding.inflate(
         LayoutInflater.from(parent.context),
         parent,
         false,
@@ -36,7 +36,7 @@ class EmojiListAdapter : RecyclerView.Adapter<EmojiListAdapter.ViewHolder>() {
   }
 
   inner class ViewHolder(
-    private val binding: EmojiItemBinding
+    private val binding: ImageItemBinding
   ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(emojiUrl: String) {

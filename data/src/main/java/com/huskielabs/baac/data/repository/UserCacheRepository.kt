@@ -9,6 +9,8 @@ interface UserCacheRepository {
 
   suspend fun getByUserName(userName: String): String?
 
-  fun getAll(): Flow<List<String>>
+  fun getAll(): Flow<List<UserAvatarDBO>>
+
+  suspend fun deleteUserAvatar(userAvatar: UserAvatarDBO)
 
 }

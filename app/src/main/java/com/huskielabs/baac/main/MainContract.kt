@@ -10,6 +10,7 @@ interface MainContract {
 
     fun getRandomEmoji()
     fun openEmojiListScreen()
+    fun openAvatarListScreen()
     fun searchAvatar(userName: String)
   }
 }
