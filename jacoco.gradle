@@ -1,15 +1,9 @@
-apply(plugin: "jacoco")
-
 subprojects {
   apply(plugin: "jacoco")
 }
 
-task jacocoTestReport(type: JacocoReport, dependsOn: [
-    "app:testDebugUnitTest",
-    "domain:test",
-    "data:testDebugUnitTest",
-]) {
-  final appFileExclusions = [
+task jacocoTestReport(type: JacocoReport, dependsOn: getTestTasks()) {
+  final fileExclusions = [
       'android/**/*.*',
       '**/BuildConfig.*',
       '**/R.class',
@@ -19,38 +13,36 @@ task jacocoTestReport(type: JacocoReport, dependsOn: [
       '**/*Activity*.*',
       '**/*Fragment*.*',
       '**/*Application*.*',
-  ]
-
-  final domainFileExclusions = [
-      '**/UseCase.*',
       '**/NoParams.*',
+      '**/*Database.*',
       '**/*Model.*',
-  ]
-
-  final dataFileExclusions = [
-      '**/*Database**.*',
+      '**/shared/**/*',
+      '**/di/**/*',
       '**/*DBO.*',
       '**/*DTO.*',
       '**/*DAO.*',
+      '**/*Service.*',
   ]
 
-  final classDirectoriesTrees = [
-      fileTree(dir: "${project.rootDir}/app/build/tmp/kotlin-classes/debug", excludes: appFileExclusions),
-      fileTree(dir: "${project.rootDir}/domain/build/classes/kotlin/main", excludes: domainFileExclusions),
-      fileTree(dir: "${project.rootDir}/data/build/tmp/kotlin-classes/debug", excludes: dataFileExclusions),
-  ]
+  final List<FileTree> classDirectoriesTrees = new ArrayList()
+  final List<String> coverageSourceDirs = new ArrayList()
+  final List<String> executionDataDirs = new ArrayList()
 
-  final coverageSourceDirs = [
-      "${project.rootDir}/app/src/main/java",
-      "${project.rootDir}/domain/src/main/java",
-      "${project.rootDir}/data/src/main/java",
-  ]
+  subprojects { project ->
+    if (project.subprojects.isEmpty()) {
+      project.evaluate()
 
-  final executionDataDirs = [
-      "${project.rootDir}/app/build/jacoco/testDebugUnitTest.exec",
-      "${project.rootDir}/domain/build/jacoco/test.exec",
-      "${project.rootDir}/data/build/jacoco/testDebugUnitTest.exec",
-  ]
+      coverageSourceDirs.add("${project.projectDir}/src/main/java")
+
+      if (project.hasProperty("android")) {
+        classDirectoriesTrees.add(fileTree(dir: "${project.buildDir}/tmp/kotlin-classes/debug/", excludes: fileExclusions))
+        executionDataDirs.add("${project.buildDir}/jacoco/testDebugUnitTest.exec")
+      } else {
+        classDirectoriesTrees.add(fileTree(dir: "${project.buildDir}/classes/kotlin/main", excludes: fileExclusions))
+        executionDataDirs.add("${project.buildDir}/jacoco/test.exec")
+      }
+    }
+  }
 
   reports {
     html {
@@ -66,4 +58,25 @@ task jacocoTestReport(type: JacocoReport, dependsOn: [
   classDirectories.setFrom(files(classDirectoriesTrees))
   sourceDirectories.setFrom(files(coverageSourceDirs))
   executionData.setFrom(files(executionDataDirs))
+}
+
+def getTestTasks() {
+  final List<String> tasks = new ArrayList()
+
+  subprojects { project ->
+    if (project.subprojects.isEmpty()) {
+      project.evaluate()
+      if (project.hasProperty("android")) {
+        tasks.add("${cleanName(project.displayName)}:testDebugUnitTest")
+      } else {
+        tasks.add("${cleanName(project.displayName)}:test")
+      }
+    }
+  }
+
+  return tasks.toArray()
+}
+
+static def cleanName(final String name) {
+  return name.substring(9, name.length() - 1)
 }

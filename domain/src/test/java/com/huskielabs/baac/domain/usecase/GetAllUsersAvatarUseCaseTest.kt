@@ -1,7 +1,7 @@
 package com.huskielabs.baac.domain.usecase
 
 import com.huskielabs.baac.domain.datasource.UserDataSource
-import com.huskielabs.baac.domain.usecase.GetAllUsersAvatarUseCase
+import com.huskielabs.baac.domain.model.UserAvatarModel
 import com.huskielabs.baac.domain.usecase.shared.NoParams
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -27,8 +27,10 @@ class GetAllUsersAvatarUseCaseTest {
 
   @Test
   fun `should get all users avatar`() {
-    val dataSourceResponse = flowOf(listOf("avatarUrl"))
-    val expected = listOf("avatarUrl")
+    val dataSourceResponse = flowOf(
+      listOf(UserAvatarModel("userName", "avatarUrl"))
+    )
+    val expected = listOf(UserAvatarModel("userName", "avatarUrl"))
 
     coEvery { userDataSource.getAll() } returns dataSourceResponse
 

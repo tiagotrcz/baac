@@ -4,6 +4,7 @@ import com.huskielabs.baac.data.cache.dbo.UserAvatarDBO
 import com.huskielabs.baac.data.repository.RemoteRepository
 import com.huskielabs.baac.data.repository.UserCacheRepository
 import com.huskielabs.baac.domain.datasource.UserDataSource
+import com.huskielabs.baac.domain.model.UserAvatarModel
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.confirmVerified
@@ -71,8 +72,8 @@ class UserDataSourceImplTest {
 
   @Test
   fun `should get all avatars from cache`() {
-    val cacheResponse = flowOf(listOf("avatarUrl"))
-    val expected = listOf("avatarUrl")
+    val cacheResponse = flowOf(listOf(UserAvatarDBO("userName","avatarUrl")))
+    val expected = listOf(UserAvatarModel("userName","avatarUrl"))
 
     coEvery { userCacheRepository.getAll() } returns cacheResponse
 

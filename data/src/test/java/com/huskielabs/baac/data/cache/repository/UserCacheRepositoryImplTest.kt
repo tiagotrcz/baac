@@ -56,8 +56,8 @@ class UserCacheRepositoryImplTest {
 
   @Test
   fun `should get all avatars`() {
-    val daoResponse = flowOf(listOf("userAvatar"))
-    val expected = listOf("userAvatar")
+    val daoResponse = flowOf(listOf(UserAvatarDBO("userName","avatarUrl")))
+    val expected = listOf(UserAvatarDBO("userName","avatarUrl"))
 
     coEvery { userDao.getAll() } returns daoResponse
 
