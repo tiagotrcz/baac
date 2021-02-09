@@ -8,6 +8,6 @@ interface RemoteRepository {
 
   suspend fun getUserAvatarUrl(userName: String): String
 
-  suspend fun getUserRepo(page: Int): List<UserRepoDTO>
+  suspend fun getUserRepos(page: Int): List<UserRepoDTO>
 
 }

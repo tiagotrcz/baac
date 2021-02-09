@@ -15,7 +15,7 @@ interface GitHubService {
   suspend fun getUserAvatar(@Path("username") userName: String): UserAvatarDTO
 
   @GET("users/{username}/repos")
-  suspend fun getUserRepo(
+  suspend fun getUserRepos(
     @Path("username") userName: String = "google",
     @Query("page") page: Int,
     @Query("per_page") perPage: Int = 30,

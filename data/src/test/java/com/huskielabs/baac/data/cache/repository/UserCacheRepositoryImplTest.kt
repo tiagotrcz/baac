@@ -6,7 +6,9 @@ import com.huskielabs.baac.data.repository.UserCacheRepository
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.confirmVerified
+import io.mockk.just
 import io.mockk.mockk
+import io.mockk.runs
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.runBlocking
@@ -68,6 +70,19 @@ class UserCacheRepositoryImplTest {
     }
 
     coVerify(exactly = 1) { userDao.getAll() }
+
+    confirmVerified(userDao)
+  }
+
+  @Test
+  fun `should delete user avatar`() {
+    val userAvatar = UserAvatarDBO("userName", "avatarUrl")
+
+    coEvery { userDao.delete(userAvatar) } just runs
+
+    runBlocking { repository.deleteUserAvatar(userAvatar) }
+
+    coVerify(exactly = 1) { userDao.delete(userAvatar) }
 
     confirmVerified(userDao)
   }

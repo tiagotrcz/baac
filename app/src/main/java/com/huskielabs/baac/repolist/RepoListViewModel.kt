@@ -2,7 +2,7 @@ package com.huskielabs.baac.repolist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.huskielabs.baac.domain.usecase.GetUserRepoUseCase
+import com.huskielabs.baac.domain.usecase.GetUserReposUseCase
 import com.huskielabs.baac.shared.DispatchersProvider
 import com.huskielabs.baac.shared.Reducer
 import com.huskielabs.baac.shared.ReducerImpl
@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RepoListViewModel @Inject constructor(
-  private val getUserRepoUseCase: GetUserRepoUseCase,
+  private val getUserReposUseCase: GetUserReposUseCase,
   private val dispatchersProvider: DispatchersProvider,
 ) : ViewModel(), RepoListContract.ViewModel,
   Reducer<RepoListState> by ReducerImpl(RepoListState.INITIAL) {
@@ -27,7 +27,7 @@ class RepoListViewModel @Inject constructor(
       updateState { copy(repos = emptyList(), showFirstPageLoading = true, isLoading = true) }
 
       try {
-        val repos = getUserRepoUseCase(GetUserRepoUseCase.Params(page)).map {
+        val repos = getUserReposUseCase(GetUserReposUseCase.Params(page)).map {
           UserRepoViewData(it.fullName, it.url)
         }
 
@@ -58,7 +58,7 @@ class RepoListViewModel @Inject constructor(
       updateState { copy(repos = emptyList(), isLoading = true) }
       try {
         page++
-        val repos = getUserRepoUseCase(GetUserRepoUseCase.Params(page)).map {
+        val repos = getUserReposUseCase(GetUserReposUseCase.Params(page)).map {
           UserRepoViewData(it.fullName, it.url)
         }
 

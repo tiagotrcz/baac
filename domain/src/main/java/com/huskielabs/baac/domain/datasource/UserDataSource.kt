@@ -12,6 +12,6 @@ interface UserDataSource {
 
   fun getAll(): Flow<List<UserAvatarModel>>
 
-  suspend fun getUserRepo(page: Int): List<UserRepoModel>
+  suspend fun getUserRepos(page: Int): List<UserRepoModel>
 
 }

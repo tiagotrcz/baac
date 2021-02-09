@@ -1,10 +1,12 @@
 package com.huskielabs.baac.data
 
 import com.huskielabs.baac.data.cache.dbo.UserAvatarDBO
+import com.huskielabs.baac.data.remote.dto.UserRepoDTO
 import com.huskielabs.baac.data.repository.RemoteRepository
 import com.huskielabs.baac.data.repository.UserCacheRepository
 import com.huskielabs.baac.domain.datasource.UserDataSource
 import com.huskielabs.baac.domain.model.UserAvatarModel
+import com.huskielabs.baac.domain.model.UserRepoModel
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.confirmVerified
@@ -84,6 +86,22 @@ class UserDataSourceImplTest {
     }
 
     coVerify(exactly = 1) { userCacheRepository.getAll() }
+
+    confirmVerified(remoteRepository, userCacheRepository)
+  }
+
+  @Test
+  fun `should get users repo from remote`() {
+    val page = 1
+    val remoteResponse = listOf(UserRepoDTO("userName","avatarUrl"))
+    val expected = listOf(UserRepoModel("userName","avatarUrl"))
+
+    coEvery { remoteRepository.getUserRepos(page) } returns remoteResponse
+
+    val actual = runBlocking { dataSource.getUserRepos(page) }
+    Assert.assertEquals(expected, actual)
+
+    coVerify(exactly = 1) { remoteRepository.getUserRepos(page) }
 
     confirmVerified(remoteRepository, userCacheRepository)
   }

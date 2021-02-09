@@ -5,12 +5,12 @@ import com.huskielabs.baac.domain.model.UserRepoModel
 import com.huskielabs.baac.domain.usecase.shared.UseCase
 import javax.inject.Inject
 
-class GetUserRepoUseCase @Inject constructor(
+class GetUserReposUseCase @Inject constructor(
   private val userDataSource: UserDataSource,
-) : UseCase<GetUserRepoUseCase.Params, List<UserRepoModel>> {
+) : UseCase<GetUserReposUseCase.Params, List<UserRepoModel>> {
 
   override suspend fun invoke(params: Params): List<UserRepoModel> {
-    return userDataSource.getUserRepo(params.page)
+    return userDataSource.getUserRepos(params.page)
   }
 
   data class Params(
