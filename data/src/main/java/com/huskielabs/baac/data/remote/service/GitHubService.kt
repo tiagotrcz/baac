@@ -14,11 +14,11 @@ interface GitHubService {
   @GET("users/{username}")
   suspend fun getUserAvatar(@Path("username") userName: String): UserAvatarDTO
 
-  @GET("users/{username}")
+  @GET("users/{username}/repos")
   suspend fun getUserRepo(
-    @Path("username") userName: String,
+    @Path("username") userName: String = "google",
     @Query("page") page: Int,
-    @Query("per_page") perPage: Int,
+    @Query("per_page") perPage: Int = 30,
   ): List<UserRepoDTO>
 
 }

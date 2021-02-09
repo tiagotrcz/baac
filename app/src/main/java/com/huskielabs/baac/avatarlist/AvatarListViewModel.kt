@@ -9,13 +9,11 @@ import com.huskielabs.baac.shared.DispatchersProvider
 import com.huskielabs.baac.shared.Reducer
 import com.huskielabs.baac.shared.ReducerImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -25,9 +23,9 @@ class AvatarListViewModel @Inject constructor(
   private val deleteUserAvatarUseCase: DeleteUserAvatarUseCase,
   private val dispatchersProvider: DispatchersProvider,
 ) : ViewModel(), AvatarListContract.ViewModel,
-  Reducer<AvatarListViewState> by ReducerImpl(AvatarListViewState.INITIAL) {
+  Reducer<AvatarListState> by ReducerImpl(AvatarListState.INITIAL) {
 
-  override val state: StateFlow<AvatarListViewState> = mutableState
+  override val state: StateFlow<AvatarListState> = mutableState
 
   override fun getAllUsersAvatar() {
     getAllUserAvatarUseCase(NoParams)

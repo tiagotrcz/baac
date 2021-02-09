@@ -47,6 +47,10 @@ class MainViewModel @Inject constructor(
     navigator.navigate(R.id.main_to_avatarList)
   }
 
+  override fun openGoogleRepoListScreen() {
+    navigator.navigate(R.id.main_to_repoList)
+  }
+
   override fun searchAvatar(userName: String) {
     viewModelScope.launch(dispatchersProvider.io) {
       updateState { copy(isRandomEmojiLoading = true) }

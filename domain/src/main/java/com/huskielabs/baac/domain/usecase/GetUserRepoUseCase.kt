@@ -10,17 +10,11 @@ class GetUserRepoUseCase @Inject constructor(
 ) : UseCase<GetUserRepoUseCase.Params, List<UserRepoModel>> {
 
   override suspend fun invoke(params: Params): List<UserRepoModel> {
-    return userDataSource.getUserRepo(
-      params.userName,
-      params.page,
-      params.perPage,
-    )
+    return userDataSource.getUserRepo(params.page)
   }
 
   data class Params(
-    val userName: String,
     val page: Int,
-    val perPage: Int,
   )
 
 }

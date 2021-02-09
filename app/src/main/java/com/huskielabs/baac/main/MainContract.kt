@@ -11,6 +11,7 @@ interface MainContract {
     fun getRandomEmoji()
     fun openEmojiListScreen()
     fun openAvatarListScreen()
+    fun openGoogleRepoListScreen()
     fun searchAvatar(userName: String)
   }
 }

@@ -45,8 +45,8 @@ class UserDataSourceImpl @Inject constructor(
     )
   }
 
-  override suspend fun getUserRepo(userName: String, page: Int, perPage: Int): List<UserRepoModel> {
-    return remoteRepository.getUserRepo(userName, page, perPage).map { repo ->
+  override suspend fun getUserRepo(page: Int): List<UserRepoModel> {
+    return remoteRepository.getUserRepo(page).map { repo ->
       UserRepoModel(
         fullName = repo.fullName,
         url = repo.url,

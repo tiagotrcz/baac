@@ -32,6 +32,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
       viewModel.searchAvatar(editAvatarSearch.text.toString())
     }
     buttonOpenAvatarList.setOnClickListener { viewModel.openAvatarListScreen() }
+    buttonOpenGoogleRepoList.setOnClickListener { viewModel.openGoogleRepoListScreen() }
   }
 
   private fun bindOutputs() = with(viewModel) {

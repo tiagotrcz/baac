@@ -17,8 +17,8 @@ class RemoteRepositoryImpl @Inject constructor(
     return gitHubService.getUserAvatar(userName).avatarUrl
   }
 
-  override suspend fun getUserRepo(userName: String, page: Int, perPage: Int): List<UserRepoDTO> {
-    return gitHubService.getUserRepo(userName, page, perPage)
+  override suspend fun getUserRepo(page: Int): List<UserRepoDTO> {
+    return gitHubService.getUserRepo(page = page)
   }
 
 }

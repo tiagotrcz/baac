@@ -16,16 +16,24 @@
     <action
       android:id="@+id/main_to_avatarList"
       app:destination="@id/avatarListFragment" />
+    <action
+      android:id="@+id/main_to_repoList"
+      app:destination="@id/repoListFragment" />
   </fragment>
   <fragment
     android:id="@+id/emojiListFragment"
     android:name="com.huskielabs.baac.emojilist.EmojiListFragment"
     android:label="emoji_list_fragment"
-    tools:layout="@layout/emoji_list_fragment"/>
+    tools:layout="@layout/emoji_list_fragment" />
   <fragment
     android:id="@+id/avatarListFragment"
     android:name="com.huskielabs.baac.avatarlist.AvatarListFragment"
     android:label="avatar_list_fragment"
     tools:layout="@layout/avatar_list_fragment" />
+  <fragment
+    android:id="@+id/repoListFragment"
+    android:name="com.huskielabs.baac.repolist.RepoListFragment"
+    android:label="repo_list_fragment"
+    tools:layout="@layout/repo_list_fragment" />
 
 </navigation>
