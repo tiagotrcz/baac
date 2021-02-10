@@ -27,14 +27,14 @@ class MainViewModel @Inject constructor(
 
   override fun getRandomEmoji() {
     viewModelScope.launch(dispatchersProvider.io) {
-      updateState { copy(isRandomEmojiLoading = true) }
+      updateState { copy(isImageLoading = true) }
 
       try {
         val emojiUrl = getRandomEmojiUseCase(NoParams)
 
-        updateState { copy(isRandomEmojiLoading = false, imageUrl = emojiUrl) }
+        updateState { copy(isImageLoading = false, imageUrl = emojiUrl) }
       } catch (e: Exception) {
-        updateState { copy(isRandomEmojiLoading = false) }
+        updateState { copy(isImageLoading = false) }
       }
     }
   }
@@ -53,15 +53,15 @@ class MainViewModel @Inject constructor(
 
   override fun searchAvatar(userName: String) {
     viewModelScope.launch(dispatchersProvider.io) {
-      updateState { copy(isRandomEmojiLoading = true) }
+      updateState { copy(isImageLoading = true) }
 
       try {
         val avatarUrl = getUserAvatarUseCase(GetUserAvatarUseCase.Params(userName))
 
-        updateState { copy(isRandomEmojiLoading = false, imageUrl = avatarUrl) }
+        updateState { copy(isImageLoading = false, imageUrl = avatarUrl) }
       } catch (e: Exception) {
         e.printStackTrace()
-        updateState { copy(isRandomEmojiLoading = false) }
+        updateState { copy(isImageLoading = false) }
       }
     }
   }

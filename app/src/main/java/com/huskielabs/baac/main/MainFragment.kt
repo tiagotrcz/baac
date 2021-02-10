@@ -38,8 +38,8 @@ class MainFragment : Fragment(R.layout.main_fragment) {
   private fun bindOutputs() = with(viewModel) {
     watch(state) { state ->
       with(binding) {
-        imageEmojiAvatar.isVisible = !state.isRandomEmojiLoading
-        progressBarRandomEmoji.isVisible = state.isRandomEmojiLoading
+        imageEmojiAvatar.isVisible = !state.isImageLoading
+        progressBarRandomEmoji.isVisible = state.isImageLoading
 
         state.imageUrl?.let(::loadImage)
       }
