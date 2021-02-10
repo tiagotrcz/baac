@@ -44,7 +44,6 @@ class RepoListViewModel @Inject constructor(
         updateState {
           copy(
             repos = emptyList(),
-            showMainError = false,
             showFirstPageLoading = false,
             isLoading = false,
           )

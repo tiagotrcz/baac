@@ -40,7 +40,7 @@ class MainViewModelTest {
   }
 
   @After
-  fun tearDown() {
+  fun `clean up`() {
     Dispatchers.resetMain()
   }
 
