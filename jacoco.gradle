@@ -1,0 +1,82 @@
+subprojects {
+  apply(plugin: "jacoco")
+}
+
+task jacocoTestReport(type: JacocoReport, dependsOn: getTestTasks()) {
+  final fileExclusions = [
+      'android/**/*.*',
+      '**/BuildConfig.*',
+      '**/R.class',
+      '**/R$*.class',
+      '**/*Adapter*.*',
+      '**/*ViewHolder*.*',
+      '**/*Activity*.*',
+      '**/*Fragment*.*',
+      '**/*Application*.*',
+      '**/NoParams.*',
+      '**/*Database.*',
+      '**/*Model.*',
+      '**/shared/**/*',
+      '**/di/**/*',
+      '**/*DBO.*',
+      '**/*DTO.*',
+      '**/*DAO.*',
+      '**/*Service.*',
+  ]
+
+  final List<FileTree> classDirectoriesTrees = new ArrayList()
+  final List<String> coverageSourceDirs = new ArrayList()
+  final List<String> executionDataDirs = new ArrayList()
+
+  subprojects { project ->
+    if (project.subprojects.isEmpty()) {
+      project.evaluate()
+
+      coverageSourceDirs.add("${project.projectDir}/src/main/java")
+
+      if (project.hasProperty("android")) {
+        classDirectoriesTrees.add(fileTree(dir: "${project.buildDir}/tmp/kotlin-classes/debug/", excludes: fileExclusions))
+        executionDataDirs.add("${project.buildDir}/jacoco/testDebugUnitTest.exec")
+      } else {
+        classDirectoriesTrees.add(fileTree(dir: "${project.buildDir}/classes/kotlin/main", excludes: fileExclusions))
+        executionDataDirs.add("${project.buildDir}/jacoco/test.exec")
+      }
+    }
+  }
+
+  reports {
+    html {
+      enabled true
+      destination file('build/reports/jacoco/html')
+    }
+    xml {
+      enabled true
+      destination file('build/reports/jacoco/jacocoTestReport.xml')
+    }
+  }
+
+  classDirectories.setFrom(files(classDirectoriesTrees))
+  sourceDirectories.setFrom(files(coverageSourceDirs))
+  executionData.setFrom(files(executionDataDirs))
+}
+
+def getTestTasks() {
+  final List<String> tasks = new ArrayList()
+
+  subprojects { project ->
+    if (project.subprojects.isEmpty()) {
+      project.evaluate()
+      if (project.hasProperty("android")) {
+        tasks.add("${cleanName(project.displayName)}:testDebugUnitTest")
+      } else {
+        tasks.add("${cleanName(project.displayName)}:test")
+      }
+    }
+  }
+
+  return tasks.toArray()
+}
+
+static def cleanName(final String name) {
+  return name.substring(9, name.length() - 1)
+}

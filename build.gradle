@@ -1,0 +1,40 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+  apply from: "./dependencies.gradle"
+  ext {
+    kotlin_version = '1.4.30'
+  }
+
+  repositories {
+    google()
+    jcenter()
+  }
+
+  dependencies {
+    classpath "com.android.tools.build:gradle:$versions.gradle"
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+    classpath "com.google.dagger:hilt-android-gradle-plugin:$versions.hilt"
+
+  }
+}
+
+plugins {
+  id "io.gitlab.arturbosch.detekt" version "1.10.0"
+  id "jacoco"
+}
+
+allprojects {
+  repositories {
+    google()
+    jcenter()
+    maven { url "https://dl.bintray.com/kotlin/kotlinx" }
+  }
+}
+
+apply from: "android.gradle"
+apply from: "detekt.gradle"
+apply from: "jacoco.gradle"
+
+task clean(type: Delete) {
+  delete rootProject.buildDir
+}

@@ -1,0 +1,41 @@
+plugins {
+  id "com.android.application"
+  id "kotlin-android"
+  id "kotlin-kapt"
+  id "dagger.hilt.android.plugin"
+  id "jacoco"
+}
+
+android {
+  defaultConfig {
+    applicationId "com.huskielabs.baac"
+  }
+
+  buildFeatures {
+    viewBinding true
+  }
+}
+
+dependencies {
+  implementation project(":domain")
+  implementation project(":data")
+
+  implementation "androidx.core:core-ktx:$versions.androidx_core"
+  implementation "androidx.appcompat:appcompat:$versions.appcompat"
+  implementation "com.google.android.material:material:$versions.material"
+  implementation "androidx.swiperefreshlayout:swiperefreshlayout:$versions.swiperefreshlayout"
+  implementation "androidx.constraintlayout:constraintlayout:$versions.constraintlayout"
+
+  implementation "androidx.navigation:navigation-fragment-ktx:$versions.navigation"
+  implementation "androidx.navigation:navigation-ui-ktx:$versions.navigation"
+
+  implementation "com.google.dagger:hilt-android:$versions.hilt"
+  implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+  kapt "com.google.dagger:hilt-android-compiler:$versions.hilt"
+
+  implementation "io.coil-kt:coil:$versions.coil"
+
+  testImplementation "junit:junit:$versions.junit"
+  testImplementation "io.mockk:mockk:$versions.mockk"
+  testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$versions.coroutines"
+}
